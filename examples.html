@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>array methods</title>
+</head>
+<body>
+
+</body>
+    
+    <script>
+
+        function regexPart1(){
+            let name = "Ahmed Nayel ahmed Mousa";
+            let needWord = /Ahmed/ig;
+
+            // match ( Array as a return value. ) this method used to comparing with regular expression
+            // i : in-sensitive [ default sensitive ]
+            // g : global [ when you want to do searching to all of the words! ]
+
+            console.log(name.match(needWord))
+        }
+
+        function regexPart2(){
+            let website = "com org info ahmed nayel aqeel";
+            let pattern = /org|ahmed/g; // when you want to get just oro remove g!
+            console.log('Example one : ',website.match(pattern))
+        
+
+            let phone = "0!1!2!3!4!5!6!7!8!9!";
+            let phoneRegex = /[^0-5|]/g;
+            console.log('Example two : ' ,phone.match(phoneRegex))
+
+            let materials = "OSp1 OS10s OS9 OS80S";
+            let patternRegex = /OS[5-9]0s/ig;
+            console.log("Example Three : " , materials.match(patternRegex) )
+        }
+
+        function regexPart3(){
+            let regular = "0IP12a!B^c@df#e459AOS$";
+            let pattern = /[^0-4a-zA-Z]/g;
+
+            console.log('example one' , regular.match(pattern))
+        }
+        
+        function regexPart4(){
+            let emails = "ahmed@@@gmail.com Ahme78@n.com  a@y.com a@g.net  1@1.com";
+            // . to get all the character in the string
+            // \w to get all the ch[a-A],num,
+            // \W to get special ch like #,%,$,....
+            
+            let patternRegex = /\w@\w.(com|net)/g;
+            console.log(emails.match(patternRegex))
+        }
+
+        function regexPart5(){
+            let name = "Sayed 1Spam 2Spam 3Spam Spam4 Spam5 Osama Ahmed ASpamo";
+            // part one :
+            // let namePattern = /spam/ig;
+            // زي كأنو بقص الكلام 
+
+            // part two : More Restriction where will searching about word just starting with spam!
+            // let namePattern = /\bspam/ig;
+
+            // part two : More Restriction where will searching about word just ending with spam!
+            // let namePattern = /spam\b/ig;
+
+            let namePattern = /(\bspam|spam\b)/ig;
+            console.log(name.match(namePattern));
+        }
+
+        function regexPart6(){
+            // Testing method : will check if the element exist or
+            // not through return boolean
+            let name = "Ahmed Nayel Ahmed Al Darabee";
+            let patternRegex = /(ahmed\b|\bosama)/gi;
+            console.log(patternRegex.test(name));
+        }
+
+        function regexPart7(){
+            let emails = "se@gm.com ahmednayel@gmail.net"
+            // each \w will represented one character.
+            // let patternRegex = /\w\w@\w\w.com/gi;
+            
+            // but when you think about access to one or more ch use + notation
+
+            let patternRegex = /\w+@\w+.(com|net)/gi;
+            console.log(emails.match(patternRegex));
+        }
+
+        // important example
+        function regexPart8(){
+            let websites = "https://www.google.com http://www.facebook.com https://ahmed-nayel-portfolio.netlify.app";
+            // ? will getting the value if exist or not exist!
+            let pattern = /(https?:\/\/)?(www.)?\w+.com /gi;
+            console.log(websites.match(pattern));
+        }
+
+        function regexPart9(){
+            // examples
+            let website = "S100S 53000S SS0000S S950000S";
+            // let pattern = /s\d{3}s/gi;
+            // let pattern = /s\d{3,}s/gi; at least
+            let pattern = /s\d{3,4}s/gi; //[ Ranges of values start-end ]
+            console.log(website.match(pattern))
+
+        }
+
+        function regexPart10(){
+            // testing words
+            let statement = "we lovee programming"
+            let anotherStatement = "1osamaZ 2AhmedZ 3moahmmed 4moustafaZ";
+
+            // $ end with
+            // ^ start with
+            // ?= followed by
+            // ?! not followed by ...
+
+            // let pattern = /ing$/gi;
+            // let pattern = /^we/gi;
+            // \d start with digit
+            let pattern = /\d\w{5}(?=Z)/gi;
+            // (?=Z) this way will refer to the there exist another words after the current word that end with Z! (Following process)
+            console.log(pattern.test(anotherStatement));
+        }
+
+        function replaceFn(){
+            // the main different between replace and replaceAll method
+            // replace : will replace needed word once it's exist!
+            // replaceAll : will replace needed word once it's exist!
+
+            let resume = " my name is @ my favorite @ language is @ ";
+            let pattern = /@/ig;
+
+            //console.log(resume.replace("@","Ahmed")); // my name is Ahmed my favorite @ language is JS
+            //console.log(resume.replaceAll("@","Ahmed")); // my name is Ahmed my favorite Ahmed language is JS
+            console.log(resume.replaceAll(pattern,"Ahmed"))
+        }
+        
+        function validationForm(){
+            // \s refer to the space.
+            // needed pattern (xxxx) xxx-xxxx
+            
+            // (\...\) to accepted the brackets
+            let phone = "(0962) 788-526";
+            let phonePattern = /\(\d{4}\)\s\d{3}-\d{4}/;
+
+            // why the result of the next code given false ? 
+            console.log('The final result: ' , phonePattern.test(phone));
+        }
+
+        function zeroORMore(){
+            let nameElement = "ahmed78 ahmed osama"
+            let pattern = /\d*78/
+            console.log(nameElement.match(pattern))
+
+            // it's be the same of + but not one or more where will start searching from zero or more...
+        }
+
+    </script>
+</html>
