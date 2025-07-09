@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<style>
+form {
+  cursor: pointer;
+}
+
+form input {
+  padding: 5px 1px;
+  border-radius: 5px;
+  outline: none;
+  border: 1px solid black;
+}
+
+form input:focus {
+  outline: 2px solid green;
+}
+
+form button {
+  border: none;
+  padding: 5px 10px;
+  border-radius: 8px;
+  background-color: green;
+  color: white;
+  transition: all 0.3s ease-in-out;
+}
+
+form button:hover{
+  background-color: white;
+  color: black;
+}    
+    </style>
+
+  </head>
+  <body>
+
+    <form action="#">
+        <input class="phoneNumber" type="phone" placeholder="Enter your phone number">
+        <button class="submitBtn" type="submit">Send your data</button>
+    </form>
+    
+    <span>result be as: </span>
+
+    <script>
+    const form = document.querySelector("form");
+const phoneNumber = document.querySelector(".phoneNumber");
+const submitBtn = document.querySelector(".submitBtn");
+const span = document.querySelector("span");
+
+form.onsubmit = function(e){
+  e.preventDefault();
+  
+  const regexp = /\(\d{4}\)\s\d{3}-\d{4}/;
+  const inputData = phoneNumber.value;
+  
+  const regResult = regexp.test(inputData);
+  
+  if(regResult){
+    return span.innerHTML += "Success Operation";
+  }else{
+    return span.innerHTML += "Wrong Operation!";
+  }
+  
+}
+    </script>
+  </body>
+</html>
