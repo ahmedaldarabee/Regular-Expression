@@ -1,4 +1,5 @@
 console.log("Regular Expression or regex | Email - IP - Phone - URL ");
+console.log("Most Popular Tool for restrictions in the data handling\n");
 console.log("Check about complecated data\n");
 
 let username = "ahmed nayel mohammad Ahmed al darabee";
@@ -19,8 +20,9 @@ let regex = /Ahmeds/ig // / ... / that known as pattern
 // console.log(username.match(regex));
     
 // Ranges:
-    // (|) or
+    // (|) or () called as group
     // [ x - y ] from x to y
+// skipping be as \ - back slash -
     
 // What's about when i want to search about array not string?
 
@@ -69,6 +71,8 @@ console.log('Fourth Design: ',randomTxt.match(randomTxtRegexFourth),'\n');
 // .\D => matches non-digit characters. like not \d
 // .\s  => -matches whitespace character.
 // · \S => · matches non whitespace character. like not \s
+// \b => matches at the beginning or end of a word.
+// \B => matches NOT at the beginning/end of a word.
 
 console.log('\ncharacter classes');
 
@@ -81,12 +85,81 @@ let email = 'o@@@g...com.o@g.com O@g.net A@Y.com O-g.com o@s.org 1@1.com';
 let validEmailPattern = /\w@\w.(com|net)/g
 console.log(email.match(validEmailPattern),'\n');
 
+let nameSpam = "45Spam spam33 8spam ospam2 none";
+// let patternSpam = /spam\b/gi;
+let patternSpam = /\bspam/gi;
+console.log(nameSpam.match(patternSpam),'\n');
+
+// test method
+// that return true or false, based on needed check-pattern
+
+console.log(`Is this pattern ${patternSpam} exist in this statement [ ${nameSpam} ]: `,patternSpam.test(nameSpam));
+
+// Quantifiers
+// +: one or more
+// *: zero or more [ there exist or not ]
+// ?:zero or one [ optional requirement ]
 
 
+let mails = "o@nn.sa osama@gmail.com elzero@gmail.net osama@mail.ru";
+let mailPatternFirst = /\w+@\w+.(com|net)/gi
+console.log('\nQuantifiers 1: ',mails.match(mailPatternFirst),'\n');
 
 
+let numsQuantifier = "0110 10 050 150 05120 0560 350 00"; 
+let numsQuantifierPattern = /0\d*0/g
+
+console.log('\nQuantifiers 2: ',numsQuantifier.match(numsQuantifierPattern),'\n');
+
+let urls = "https://google.com http://www.website.net web.com";
+
+let patternURL=/https?:\/\//g
+console.log('\nQuantifiers 3: ',urls.match(patternURL),'\n');
+
+let patternURL2 =/https?:\/\/(www.)?\w+.(net|com)/g
+console.log('\nQuantifiers 4: ',urls.match(patternURL2),'\n');
+
+let patternURL3 =/(https?:\/\/)?(www.)?\w+.(net|com)/g
+console.log('\nQuantifiers 5: ',urls.match(patternURL3),'\n');
+
+// {min,max} idea
+let serials = "S100S S3000S S50000S S950000S";
+let serialPattern = /S\d{3}S/g
+
+console.log('\nQuantifiers 6: ',serials.match(serialPattern),'\n');
+
+// four or five number
+let serialPattern2 = /S\d{4,5}S/g
+console.log('\nQuantifiers 7: ',serials.match(serialPattern2),'\n');
+
+// at least four number
+let serialPattern3 = /S\d{4,}S/g
+console.log('\nQuantifiers 8: ',serials.match(serialPattern3),'\n');
+
+// at most four number
+let serialPattern4 = /S\d{0,4}S/g
+console.log('\nQuantifiers 9: ',serials.match(serialPattern4),'\n');
 
 
+// $   => End With Something
+// ^   => Start With Something
+// ?=  => Followed By Something
+// ?!  => Not Followed By Something
+
+let myString ="ingWe Love Programming";
+let namesStr = "10samaZ 2AhmedZ 3Mohammed 4MoustafaZ 5GamalZ";
+
+let strPattern1 = /ing$/gi;
+let strPattern2 = /^ing/gi;
+let strPattern3 = /\d\w{4}(?=z)/gi;
+let strPattern4 = /\d\w{4}(?!z)/gi;
+
+console.log(namesStr.match(strPattern4),'\n');
+
+const ahmednayel = "ahmed nayel @ darabee @ qaisy "
+console.log(ahmednayel.replaceAll(/@/g,'al'));
 
 
-
+// the main difference between: replaceAll, replace that be as"
+// replace: once see needed it will out
+// replaceAll: will check about all statement not like replace!
